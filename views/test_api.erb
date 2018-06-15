@@ -92,7 +92,9 @@
                   var cell1 = row.insertCell(-1);
                   var cell2 = row.insertCell(1);
                   cell1.innerHTML = thing.title;
-                  cell2.innerHTML = "<img src='https://image.tmdb.org/t/p/w185/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg'/>"
+                  var poster = thing.poster_path
+                  var posterurl = 'https://image.tmdb.org/t/p/w185/' + poster
+                  cell2.innerHTML = `<img src=${posterurl} />`
                   // }
 
                   // document.getElementById('films').innerHTML = JSON.stringify(thing.title, null, 4);
