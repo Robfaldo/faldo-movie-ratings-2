@@ -17,7 +17,12 @@
         <!-- output will go here -->
     </div>
     <div id="films">
-        <!-- output will go here -->
+      <table id="films-table">
+        <tr>
+          <th>Film Title</th>
+          <th>TBC</th>
+        </tr>
+      </table>
     </div>
     <div id="search-bar">
       <input type="text" name="search" placeholder="Search..">
@@ -73,8 +78,25 @@
             .then(result=>result.json())
             .then((data)=>{
                 //process the returned data
-                console.log(data.results);
+                console.log("data results", data.results);
                 // I added .results after data
+                console.log("DATA LENGTH", data.results.length)
+                data.results.forEach(function(thing){
+                  console.log(thing.title);
+
+                  // function myFunction() {
+                  console.log("before table", document.getElementById("films-table"))
+                  var table = document.getElementById("films-table");
+                  console.log("after table", table)
+                  var row = table.insertRow(0);
+                  var cell1 = row.insertCell(0);
+                  var cell2 = row.insertCell(1);
+                  cell1.innerHTML = thing.title;
+                  cell2.innerHTML = "TBC";
+                  // }
+
+                  // document.getElementById('films').innerHTML = JSON.stringify(thing.title, null, 4);
+                });
                 document.getElementById('output').innerHTML = JSON.stringify(data, null, 4);
                 //work with results array...
 
