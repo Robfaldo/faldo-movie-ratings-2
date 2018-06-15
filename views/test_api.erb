@@ -9,12 +9,20 @@
         https://developers.themoviedb.org/3/search
         https://developers.themoviedb.org/3/movies
     -->
+    <style>
+      #films-table tr, #films-table th {
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+      }
+      #films-table {
+        border-collapse: collapse;
+      }
+    </style>
 </head>
 <body>
-    <h1>Using TheMovieDB.org API v3</h1>
-    <p><img src="https://image.tmdb.org/t/p/w185/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg" alt="Jaws"/></p>
-    <div id="output">
-        <!-- output will go here -->
+    <div id="search-bar">
+      <input type="text" name="search" placeholder="Search..">
+      <button type="button" class="btn" id="submit-search">Submit search</button>
     </div>
     <div id="films">
       <table id="films-table">
@@ -24,15 +32,8 @@
         </tr>
       </table>
     </div>
-    <div id="search-bar">
-      <input type="text" name="search" placeholder="Search..">
-      <button type="button" class="btn" id="submit-search">Submit search</button>
-    </div>
 
 
-
-    <!-- <script src="./js/key.js"></script> should be able to delete this because
-  I'm not using his api-->
     <script>
         /*************
         SAMPLE URLS
@@ -89,18 +90,33 @@
                   var table = document.getElementById("films-table");
                   console.log("after table", table)
                   var row = table.insertRow(-1);
-                  var cell1 = row.insertCell(-1);
+                  var cell1 = row.insertCell(0);
                   var cell2 = row.insertCell(1);
-                  cell1.innerHTML = thing.title;
+                  cell2.classname = "cell3"
+                  $('.cell2').attr('rowspan', '2');
+
+                  cell1.innerHTML = `${thing.title} (${thing.release_date.slice(0,4)})`;
                   var poster = thing.poster_path
                   var posterurl = 'https://image.tmdb.org/t/p/w185/' + poster
                   cell2.innerHTML = `<img src=${posterurl} />`
+
+                  var row2 = table.insertRow(-1);
+                  var cell3 = row2.insertCell(0);
+                  // cell3.classname = "cell3"
+                  // $('.cell3').attr('colspan', '2');
+                  var cell4 = row2.insertCell(1);
+                  cell3.innerHTML = thing.overview
+
+
+
                   // }
 
                   // document.getElementById('films').innerHTML = JSON.stringify(thing.title, null, 4);
                 });
-                document.getElementById('output').innerHTML = JSON.stringify(data, null, 4);
-                //work with results array...
+                //creates a div
+                $('#films').append("<div class='classname'>content</div>");
+                // do below to print out everything the whole response
+                // document.getElementById('output').innerHTML = JSON.stringify(data, null, 4);
 
             })
         }
