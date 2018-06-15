@@ -6,3 +6,5 @@ if ENV['RACK_ENV'] != 'production'
   task default: [:spec]
 
 end
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'

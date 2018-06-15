@@ -5,7 +5,7 @@ gem 'sinatra'
 gem 'sinatra-flash'
 gem 'capybara'
 gem 'bcrypt'
-
+gem 'jasmine'
 
 
 ruby '2.5.0'

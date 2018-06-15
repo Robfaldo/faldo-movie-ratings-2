@@ -52,5 +52,9 @@ class FaldoMovieRatings < Sinatra::Base
     redirect("/")
   end
 
+  get "/search" do
+    erb :test_api
+  end
+
   run! if app_file == $0
 end
