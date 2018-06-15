@@ -16,10 +16,14 @@
     <div id="output">
         <!-- output will go here -->
     </div>
+    <div id="films">
+        <!-- output will go here -->
+    </div>
     <div id="search-bar">
       <input type="text" name="search" placeholder="Search..">
       <button type="button" class="btn" id="submit-search">Submit search</button>
     </div>
+
 
 
     <!-- <script src="./js/key.js"></script> should be able to delete this because
@@ -44,7 +48,7 @@
         let APIKEY2 = "1e19328ef3a99c7d49e3b7443f8b9c77"
         let searchTerm = null;
 
-        let getConfig = function () {
+        let getConfig = function(searchTerm) {
             let url = "".concat(baseURL, 'configuration?api_key=', APIKEY2);
             fetch(url)
             .then( function(result) {
@@ -56,7 +60,7 @@
                 configData = data.images;
                 console.log('config:', data);
                 console.log('config fetched');
-                runSearch('fight club')
+                runSearch(searchTerm)
             })
             .catch(function(err){
                 alert(err);
@@ -71,16 +75,17 @@
                 //process the returned data
                 console.log(data.results);
                 // I added .results after data
-                document.getElementById('output').innerHTML = JSON.stringify(data.results, null, 4);
+                document.getElementById('output').innerHTML = JSON.stringify(data, null, 4);
                 //work with results array...
 
             })
         }
-        document.addEventListener('DOMContentLoaded', getConfig);
+        // document.addEventListener('DOMContentLoaded', getConfig);
 
         $.get()
-        $('#submit-search').click(function(){
-          console.log('yay')
+        $('#submit-search').click(function(result){
+          searchTerm = $(this).siblings("input[name='search']").val();
+          getConfig(searchTerm)
         });
         /*******************************
         SAMPLE SEARCH RESULTS DATA
